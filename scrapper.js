@@ -3,7 +3,8 @@ const camelCase = require('camelcase')
 
 const regex = {
   tag: /<span class="(txt|oscil)">(.)+<\/span>/,
-  nested: /(>((-)?[0-9]+,?([0-9])+?)%)|(>[A-Za-z]+)/,
+  nested: /(>((-)?[0-9]+,?([0-9])+?)%)/,
+  link: /<a .+>.+<\/a>/,
   number: /(^-?[0-9]+(,[0-9]+)?%?$)|(([0-9]+\.)+[0-9])/
 }
 
@@ -42,7 +43,12 @@ function formatData (data) {
 
   const result = matches[0].toString().replace('<span class="txt">', '').replace('</span>', '').trim()
 
-  if (result.includes('</a>') || result.includes('oscil')) {
+  const link = regex.link.exec(result)
+  if (link) {
+    return result.replace(/<a .+">/, '').replace('</a>', '')
+  }
+
+  if (result.includes('oscil')) {
     const value = regex.nested.exec(result)
     return value[0].toString().substring(1)
   }
