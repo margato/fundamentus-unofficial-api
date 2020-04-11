@@ -86,7 +86,7 @@ function getData (table) {
     return {
       name: label,
       label: formattedLabel,
-      data: data
+      data: data !== '-' ? data : null
     }
   })
 
