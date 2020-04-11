@@ -1,0 +1,47 @@
+{
+  "name": "unofficial-fundamentus-api",
+  "version": "1.0.0",
+  "description": "This is an module to scrap stock market data from https://fundamentus.com.br, a website that makes available financial and fundamentalist information about companies listed in Bovespa.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --experimental-modules index.js",
+    "test": "jest"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/margato/fundamentus-unofficial-api.git"
+  },
+  "type": "commonjs",
+  "keywords": [
+    "b3",
+    "stock",
+    "share",
+    "brazil",
+    "brasil",
+    "bolsa",
+    "fundamentus",
+    "indicadores",
+    "indicadores fundamentalistas",
+    "api",
+    "ibovespa"
+  ],
+  "author": "margato",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/margato/fundamentus-unofficial-api/issues"
+  },
+  "homepage": "https://github.com/margato/fundamentus-unofficial-api#readme",
+  "dependencies": {
+    "camelcase": "^6.0.0",
+    "jest": "^25.3.0",
+    "jsdom": "^16.2.2"
+  },
+  "devDependencies": {
+    "standard": "^14.3.3"
+  }
+}
