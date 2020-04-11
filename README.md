@@ -15,7 +15,11 @@ $ npm install fundamentus-unofficial-api --save
 ## Usage
 
 ```js
-const FundamentusAPI = require('../index')
+const FundamentusAPI = require('fundamentus-unofficial-api') // CommonJS
+// or
+import FundamentusAPI from 'fundamentus-unofficial-api' // ESM
+
+
 const share = await FundamentusAPI.fetch('petr3')
 ```
 
