@@ -2,8 +2,9 @@
 
 [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
+This module provides an api to get data from Brazilian stock shares.
 
-This is an module to scrap stock market data from https://fundamentus.com.br, a website that makes available financial and fundamentalist information about companies listed in Bovespa.
+The truth of source is Fundamentus, a website that provides financial and fundamentalist information about companies listed on the Bovespa.
 
 ## Installation
 
