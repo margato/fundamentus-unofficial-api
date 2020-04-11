@@ -29,16 +29,18 @@ function formatValue (value) {
   if (value.includes('%')) {
     const number = parseFloat(value.replace(/,/g, '.'))
     return parseFloat((number / 100.0).toPrecision(6))
+  } else if (value.includes(',')) {
+    return parseFloat(value.replace(/,/g, '.'))
   } else {
     return parseInt(value.replace(/\./g, ''))
   }
 }
 
 function formatData (data) {
-  const matches = regex.tag.exec(data)
+  const matches = regex.tag.exec(data.replace(/\n/g, ''))
   if (!matches) return '-'
 
-  const result = matches[0].toString().replace('<span class="txt">', '').replace('</span>', '')
+  const result = matches[0].toString().replace('<span class="txt">', '').replace('</span>', '').trim()
 
   if (result.includes('</a>') || result.includes('oscil')) {
     const value = regex.nested.exec(result)
@@ -84,7 +86,7 @@ function getData (table) {
     return {
       name: label,
       label: formattedLabel,
-      data: data !== '-' ? data : null
+      data: data
     }
   })
 

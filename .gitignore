@@ -108,6 +108,8 @@ dist/
 tmp/
 temp/
 
+s.js
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
