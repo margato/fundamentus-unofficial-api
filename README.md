@@ -1,7 +1,6 @@
 # Fundamentus Unofficial API
 
 [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
-![NPM License](https://img.shields.io/npm/l/fundamentus-unofficial-api?style=flat-square)
 
 
 This is an module to scrap stock market data from https://fundamentus.com.br, a website that makes available financial and fundamentalist information about companies listed in Bovespa.
