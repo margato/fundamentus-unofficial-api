@@ -23,7 +23,7 @@ const share = await FundamentusAPI.fetch('petr3')
 
 - All fields are parsed to its correct data type
 	- *i.e.* '"1,78%" => 0.0178
-- If a field is `null`, it means that no data is available from Fundamentus
+- If a field is `null`, it means there is no data available from Fundamentus
 ```js
 
 // console.log(share)
