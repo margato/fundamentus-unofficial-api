@@ -24,8 +24,8 @@ const share = await FundamentusAPI.fetch('petr3')
 	- *i.e.* '"1,78%" => 0.0178
 - If a field is `null`, it means there is no data available from Fundamentus
 ```js
-
 // console.log(share)
+
 {
 	ano2015: -0.0455,
 	ano2016: 0.9738,
