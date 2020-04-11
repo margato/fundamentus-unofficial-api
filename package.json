@@ -1,6 +1,6 @@
 {
   "name": "fundamentus-unofficial-api",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "This is an module to scrap stock market data from https://fundamentus.com.br, a website that makes available financial and fundamentalist information about companies listed in Bovespa.",
   "main": "index.js",
   "scripts": {
