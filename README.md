@@ -146,8 +146,8 @@ QuotationHistory {
 const shareHistory = await FundamentusAPI.fetchQuotationHistory('petr3')
 
 // Returns the history range which
-// the min quotation value was R$11,00 since January 1st, 2020
-shareHistory.minQuotation(11).maxDate('2020-01-01')
+// the quotation value was, at least, R$11.43 since January 1st, 2020
+shareHistory.minQuotation(11.43).minDate('2020-01-01')
 ```
 
 ```js
