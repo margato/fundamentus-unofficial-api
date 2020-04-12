@@ -115,10 +115,9 @@ const history = await FundamentusAPI.fetchQuotationHistory('petr3', 10)
 
 ```js
 // console.log(history)
-{
+QuotationHistory {
   share: 'PETR3',
-  limit: 10,
-  quotationHistory: [
+  history: [
     { date: '2020-04-09', quotation: 16.86 },
     { date: '2020-04-08', quotation: 17.5 },
     { date: '2020-04-07', quotation: 16.56 },
@@ -131,6 +130,31 @@ const history = await FundamentusAPI.fetchQuotationHistory('petr3', 10)
     { date: '2020-03-27', quotation: 13.03 }
   ]
 }
+```
+
+#### Methods
+`fetchQuotationHistory` returns a `QuotationHistory` instance which we can manipulate to get only a specific range of timeline or quotation value using the following methods:
+- last
+- minDate
+- maxDate
+- minQuotation
+- maxQuotation
+
+*Examples*
+
+```js
+const shareHistory = await FundamentusAPI.fetchQuotationHistory('petr3')
+
+// Returns the history range which
+// the min quotation value was R$11,00 since January 1st, 2020
+shareHistory.minQuotation(11).maxDate('2020-01-01')
+```
+
+```js
+const shareHistory = await FundamentusAPI.fetchQuotationHistory('petr3')
+
+// Returns the history in the last 10 days
+shareHistory.last(10)
 ```
 
 ## Getting help
