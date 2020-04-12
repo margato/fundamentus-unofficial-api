@@ -135,7 +135,7 @@ async function scrapQuotationHistory (share, limit = null) {
 async function getQuotationHistory (share, maxDays) {
   const data = await scrapQuotationHistory(share, maxDays)
   return {
-    share,
+    share: share.toUpperCase(),
     limit: maxDays,
     quotationHistory: data
   }

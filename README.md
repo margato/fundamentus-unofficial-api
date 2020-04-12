@@ -116,7 +116,7 @@ const history = await FundamentusAPI.fetchQuotationHistory('petr3', 10)
 ```js
 // console.log(history)
 {
-  share: 'petr3',
+  share: 'PETR3',
   limit: 10,
   quotationHistory: [
     { date: '2020-04-09', quotation: 16.86 },
