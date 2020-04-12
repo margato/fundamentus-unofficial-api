@@ -8,6 +8,11 @@ const regex = {
   number: /(^-?[0-9]+(,[0-9]+)?%?$)|(([0-9]+\.)+[0-9])/
 }
 
+const endpoints = {
+  details: 'https://fundamentus.com.br/detalhes.php?papel=',
+  quotationHistory: 'https://fundamentus.com.br/amline/cot_hist.php?papel='
+}
+
 function formatKey (key) {
   let formattedKey = key.normalize('NFD')
     .replace(/[\u0300-\u036f\\.\\$\\(\\)]/g, '')
@@ -56,11 +61,10 @@ function formatData (data) {
   return result
 }
 
-async function getPage (share) {
+async function getPage (endpoint, share) {
   const { JSDOM } = jsdom
-  const url = 'https://fundamentus.com.br/detalhes.php?papel='
   try {
-    const dom = await JSDOM.fromURL(url + share)
+    const dom = await JSDOM.fromURL(endpoint + share)
     return dom
   } catch (e) {
     console.error(e)
@@ -68,7 +72,7 @@ async function getPage (share) {
 }
 
 async function scrapShare (share) {
-  const dom = await getPage(share)
+  const dom = await getPage(endpoints.details, share)
   const { document } = dom.window
   const labels = Array.from(document.querySelectorAll('td.label'))
   const data = Array.from(document.querySelectorAll('td.data'))
@@ -83,7 +87,7 @@ async function scrapShare (share) {
   }))
 }
 
-function getData (table) {
+function parseTableData (table) {
   const result = {}
 
   const data = table.map(({ label, value }) => {
@@ -110,10 +114,31 @@ function getData (table) {
   return orderedResult
 }
 
-async function get (share) {
+async function getDetails (share) {
   const table = await scrapShare(share)
-  const data = getData(table)
+  const data = parseTableData(table)
   return data
 }
 
-module.exports = { get }
+async function scrapQuotationHistory (share, limit = null) {
+  const response = await getPage(endpoints.quotationHistory, share)
+  const serializedData = JSON.parse(response.serialize().replace(/<.+>/g, ''))
+  const data = !limit ? serializedData : serializedData.slice(serializedData.length - limit)
+  return data.map(item => {
+    return {
+      date: new Date(item[0]).toISOString().slice(0, 10),
+      quotation: item[1]
+    }
+  }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+}
+
+async function getQuotationHistory (share, maxDays) {
+  const data = await scrapQuotationHistory(share, maxDays)
+  return {
+    share,
+    limit: maxDays,
+    quotationHistory: data
+  }
+}
+
+module.exports = { getDetails, getQuotationHistory }
