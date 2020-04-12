@@ -6,6 +6,12 @@ This module provides an api to get data from Brazilian stock shares.
 
 The truth of source is Fundamentus, a website that provides financial and fundamentalist information about companies listed on the Bovespa.
 
+
+## Content
+- [Fetching details](#fetching-details-about-share)
+- [Fetching quotation history](#fetching-quotation-history)
+- [Fetching earnings history](#fetching-earnings-history)
+
 ## Installation
 
 ```bash
@@ -104,7 +110,7 @@ const share = await FundamentusAPI.fetch('petr3')
 ### Fetching quotation history
 
 ```js
-const history = await FundamentusAPI.fetchQuotationHistory('petr3')
+const quotationHistory = await FundamentusAPI.fetchQuotationHistory('petr3')
 ```
 
 #### Output
@@ -131,18 +137,59 @@ QuotationHistory {
 *Examples*
 
 ```js
-const shareHistory = await FundamentusAPI.fetchQuotationHistory('petr3')
+const quotationHistory = await FundamentusAPI.fetchQuotationHistory('petr3')
 
-// Returns the history range which
-// the quotation value was, at least, R$11.43 since January 1st, 2020
-shareHistory.minQuotation(11.43).minDate('2020-01-01')
+// Returns the history range which the quotation value was, at least, R$11.43 since January 1st, 2020
+quotationHistory.minQuotation(11.43).minDate('2020-01-01')
 ```
 
 ```js
-const shareHistory = await FundamentusAPI.fetchQuotationHistory('petr3')
+const quotationHistory = await FundamentusAPI.fetchQuotationHistory('petr3')
 
 // Returns the history in the last 10 days
-shareHistory.last(10)
+quotationHistory.last(10)
+```
+### Fetching earnings history
+
+```js
+const earningsHistory = await FundamentusAPI.fetchEarningsHistory('petr3')
+```
+
+#### Output
+
+```js
+// console.log(history)
+EarningsHistory {
+  share: 'PETR3',
+  history: [
+    { date: '2008-04-04', value: 0.05, type: 'DIVIDENDO', perShare: 1 },
+    ...
+  ]
+}
+```
+
+#### Methods
+`fetchEarningsHistory` returns a `EarningsHistory` instance which we can manipulate to get only a specific range of timeline, value or by type using the following methods:
+- minDate
+- maxDate
+- minValue
+- maxValue
+- filterByType
+
+*Examples*
+
+```js
+const earningsHistory = await FundamentusAPI.fetchEarningsHistory('petr3')
+
+// Returns all the earnings of 2019
+earningsHistory.minDate('2019-01-01').maxDate('2019-12-31')
+```
+
+```js
+const earningsHistory = await FundamentusAPI.fetchEarningsHistory('petr3')
+
+// Returns earnings by dividends with min value of 0.5
+earningsHistory.filterByType('DIVIDENDO').minValue(0.5)
 ```
 
 ## Getting help
