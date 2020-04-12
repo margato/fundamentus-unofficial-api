@@ -14,12 +14,19 @@ $ npm install fundamentus-unofficial-api --save
 
 ## Usage
 
+
+### Importing
+
 ```js
 const FundamentusAPI = require('fundamentus-unofficial-api') // CommonJS
 // or
 import FundamentusAPI from 'fundamentus-unofficial-api' // ESM
+```
 
 
+### Fetching details about share
+
+```js
 const share = await FundamentusAPI.fetch('petr3')
 ```
 
@@ -28,9 +35,11 @@ const share = await FundamentusAPI.fetch('petr3')
 - All fields are parsed to its correct data type
 	- *i.e.* '"1,78%" => 0.0178
 - If a field is `null`, it means there is no data available from Fundamentus
-```js
-// console.log(share)
 
+<details>
+  <summary>console.log(share)</summary>
+  
+```js
 {
   ano2015: -0.0455,
   ano2016: 0.9738,

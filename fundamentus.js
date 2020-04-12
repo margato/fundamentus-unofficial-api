@@ -1,10 +1,17 @@
-const scrapper = require('./scrapper')
+const { details, history } = require('./lib/scrappers')
 
 function fetch (share) {
   if (!share) {
     throw new Error('Share cannot be null or undefined')
   }
-  return scrapper.get(share)
+  return details.getDetails(share)
 }
 
-module.exports = { fetch }
+function fetchQuotationHistory (share) {
+  if (!share) {
+    throw new Error('Share cannot be null or undefined')
+  }
+  return history.getQuotationHistory(share)
+}
+
+module.exports = { fetch, fetchQuotationHistory }
