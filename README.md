@@ -14,12 +14,19 @@ $ npm install fundamentus-unofficial-api --save
 
 ## Usage
 
+
+### Importing
+
 ```js
 const FundamentusAPI = require('fundamentus-unofficial-api') // CommonJS
 // or
 import FundamentusAPI from 'fundamentus-unofficial-api' // ESM
+```
 
 
+### Fetching details about share
+
+```js
 const share = await FundamentusAPI.fetch('petr3')
 ```
 
@@ -28,9 +35,11 @@ const share = await FundamentusAPI.fetch('petr3')
 - All fields are parsed to its correct data type
 	- *i.e.* '"1,78%" => 0.0178
 - If a field is `null`, it means there is no data available from Fundamentus
-```js
-// console.log(share)
 
+<details>
+  <summary>console.log(share)</summary>
+  
+```js
 {
   ano2015: -0.0455,
   ano2016: 0.9738,
@@ -87,6 +96,40 @@ const share = await FundamentusAPI.fetch('petr3')
   valorDeMercado: 219930000000,
   volMed2M: 852007000,
   vpa: 22.66
+}
+```
+  
+</details>
+
+### Fetching quotation history
+
+```js
+// Get since day 1
+const history = await FundamentusAPI.fetchQuotationHistory('petr3')
+
+// Get last 10 days
+const history = await FundamentusAPI.fetchQuotationHistory('petr3', 10)
+```
+
+#### Output
+
+```js
+// console.log(history)
+{
+  share: 'petr3',
+  limit: 10,
+  quotationHistory: [
+    { date: '2020-04-09', quotation: 16.86 },
+    { date: '2020-04-08', quotation: 17.5 },
+    { date: '2020-04-07', quotation: 16.56 },
+    { date: '2020-04-06', quotation: 16.15 },
+    { date: '2020-04-03', quotation: 15.32 },
+    { date: '2020-04-02', quotation: 15.43 },
+    { date: '2020-04-01', quotation: 14.21 },
+    { date: '2020-03-31', quotation: 14.14 },
+    { date: '2020-03-30', quotation: 13.44 },
+    { date: '2020-03-27', quotation: 13.03 }
+  ]
 }
 ```
 

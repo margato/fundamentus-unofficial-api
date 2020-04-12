@@ -4,7 +4,14 @@ function fetch (share) {
   if (!share) {
     throw new Error('Share cannot be null or undefined')
   }
-  return scrapper.get(share)
+  return scrapper.getDetails(share)
 }
 
-module.exports = { fetch }
+function fetchQuotationHistory (share, maxDays = null) {
+  if (!share) {
+    throw new Error('Share cannot be null or undefined')
+  }
+  return scrapper.getQuotationHistory(share, maxDays)
+}
+
+module.exports = { fetch, fetchQuotationHistory }

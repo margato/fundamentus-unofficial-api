@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node --experimental-modules index.js",
-    "test": "jest"
+    "test": "jest --runInBand --forceExit"
   },
   "standard": {
     "env": [
