@@ -1,10 +1,10 @@
-const { details, quotationHistory, earningsHistory } = require('./lib/scrappers')
+const { indicators, quotationHistory, earningsHistory } = require('./lib/scrappers')
 
 function fetch (share) {
   if (!share) {
     throw new Error('Share cannot be null or undefined')
   }
-  return details.getDetails(share)
+  return indicators.getIndicators(share)
 }
 
 function fetchQuotationHistory (share) {
